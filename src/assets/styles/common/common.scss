@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Overpass";
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    vertical-align: bottom;
+}
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+body {
+    background: var(--veryDarkColor);
+}
+
+:root {
+
+    --primaryColor: #fb7413;
+
+    --accentColor: #ffffff;
+
+    --secondaryColor: #959eac;
+
+    --mediumColor: #7c8798;
+
+    --darkColor: #252d37;
+
+    --veryDarkColor: #121417;
+
+    --black-gradient: radial-gradient(98.96% 98.96% at 50.00% 0%, #232a34 0%, #181e27 100%);
+
+}
