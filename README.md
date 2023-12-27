@@ -4,14 +4,14 @@ This is a solution to the [Interactive rating component challenge on Frontend Me
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./src/assets/images/screenshot.jpg)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: (https://github.com/maga-sv/interactive-rating-component)
+- Live Site URL: (https://your-live-site-url.com)
 
 ## Author
 
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Frontend Mentor - (https://www.frontendmentor.io/profile/maga-sv)
+- Twitter - (https://twitter.com/magadvlpr)
