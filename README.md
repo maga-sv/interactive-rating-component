@@ -9,7 +9,7 @@ This is a solution to the [Interactive rating component challenge on Frontend Me
 ### Links
 
 - Solution URL: (https://github.com/maga-sv/interactive-rating-component)
-- Live Site URL: (https://your-live-site-url.com)
+- Live Site URL: (https://interactive-rating-component-ms.netlify.app/)
 
 ## Author
 
