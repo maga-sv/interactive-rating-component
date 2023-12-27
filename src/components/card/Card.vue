@@ -1,6 +1,8 @@
 <script setup>
+import Illustration from "@/assets/images/Illustration.vue";
 import StarIcon from "@/assets/images/StarIcon.vue";
-import { ref } from "vue";
+import { ref, reactive, computed } from "vue";
+
 
 const numbers = ref([
   {
@@ -30,61 +32,137 @@ const numbers = ref([
   },
 ]);
 
+console.log(numbers);
+
+let ratingNumber = ref(NaN);
 
 const selectedNum = (num) => {
   numbers.value.forEach((element) => {
     if (element.num === num) {
       element.selected = true;
+      ratingNumber = element?.num;
     } else {
       element.selected = false;
     }
   });
 };
+
+const aaa = ref(false);
+
 </script>
 
 <template>
   <div class="card">
-    <div class="card__star">
-      <StarIcon class="card__star-icon" />
-    </div>
+    <div class="card__rate" v-show="!aaa">
+      <div class="card__star">
+        <StarIcon class="card__star-icon" />
+      </div>
 
-    <h3 class="card__title">How did we do?</h3>
+      <h3 class="card__title">How did we do?</h3>
+      
+      <p class="card__txt">
+        Please let us know how we did with your support request. All feedback is
+        appreciated to help us improve our offering!
+      </p>
 
-    <p class="card__txt">
-      Please let us know how we did with your support request. All feedback is
-      appreciated to help us improve our offering!
-    </p>
-
-    <div class="card__rating">
-      <span
-        class="card__rating-num" 
-        v-for="(number, index) in numbers"
-        :key="index"
-        :class="{'active': number?.selected}"
-        @click="selectedNum(number?.num)"
-        >{{ number?.num }}</span
+      <div class="card__rating">
+        <span
+          class="card__rating-num"
+          v-for="(number, index) in numbers"
+          :key="index"
+          :class="{ active: number?.selected }"
+          @click="selectedNum(number?.num)"
+          >{{ number?.num }}</span
+        >
+      </div>
+      
+      <button
+        class="card__btn"
+        @click="
+          numbers?.find((el) => (el?.selected == true ? aaa = true : aaa))
+        "
       >
+        Submit
+      </button>
     </div>
 
-    <button class="card__btn" >Submit</button>
+    <div class="card__thanks" v-show="aaa">
+      <Illustration />
+      <span class="card__thanks-rating"
+        >You selected {{ ratingNumber }} out of 5</span
+      >
+
+      <div class="card__thanks-main">
+        <h3 class="card__thanks-title">Thank you!</h3>
+
+        <p class="card__thanks-txt">
+          We appreciate you taking the time to give a rating. If you ever need
+          more support, don’t hesitate to get in touch!
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
 .card {
-  max-width: 412px;
-  width: 100%;
   flex-shrink: 0;
-  display: flex;
-  gap: 15px;
-  flex-direction: column;
-  justify-content: space-between;
   max-width: 412px;
   width: 100%;
-  min-height: 416px;
+  height: 416px;
   padding: 32px;
   background-image: var(--black-gradient);
   border-radius: 30px;
+
+  &__rate {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    &.active {
+      display: none;
+    }
+  }
+
+  &__thanks {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+
+    &.active {
+      display: none;
+    }
+
+    &-rating {
+      padding: 10px 15px;
+      background: var(--darkColor);
+      border-radius: 35px;
+      color: var(--primaryColor);
+    }
+
+    &-main {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    &-title {
+      color: var(--accentColor);
+      text-align: center;
+
+      font-size: 28px;
+    }
+
+    &-txt {
+      text-align: center;
+      color: var(--secondaryColor);
+    }
+  }
 
   &__star {
     height: 48px;
@@ -109,25 +187,26 @@ const selectedNum = (num) => {
     justify-content: space-between;
 
     &-num {
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-        color: var(--secondaryColor);
-        background: var(--darkColor);
-        display: grid;
-        place-items: center;
-        cursor: pointer;
-        font-weight: 700;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      color: var(--secondaryColor);
+      background: var(--darkColor);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 150ms;
 
-        &:hover {
-            color: var(--accentColor);
-            background: var(--mediumColor);
-        }
+      &:hover {
+        color: var(--accentColor);
+        background: var(--mediumColor);
+      }
 
-        &.active {
-            background: var(--primaryColor);
-            color: var(--accentColor);
-        }
+      &.active {
+        background: var(--primaryColor);
+        color: var(--accentColor);
+      }
     }
   }
 
@@ -144,13 +223,16 @@ const selectedNum = (num) => {
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 3px;
+    transition: 150ms;
 
     &:hover {
-        background: var(--accentColor);
-        color: var(--primaryColor);
+      background: var(--accentColor);
+      color: var(--primaryColor);
+    }
+
+    &:active {
+      opacity: 0.6;
     }
   }
 }
 </style>
-
-<!-- 1 2 3 4 5 Submit You selected out of 5 Thank you! We appreciate you taking the time to give a rating. If you ever need more support, don’t hesitate to get in touch! -->
